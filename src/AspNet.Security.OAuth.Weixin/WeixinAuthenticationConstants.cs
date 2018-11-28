@@ -20,8 +20,8 @@ namespace AspNet.Security.OAuth.Weixin
             public const string Province = "urn:weixin:province";
 
             //企业微信登录后获取用户信息
-            public const string UserId = "urn:weixin:UserId";
-            public const string DeviceId = "urn:weixin:DeviceId";
+            public const string UserId = "urn:weixin:userid";
+            public const string DeviceId = "urn:weixin:deviceid";
         }
     }
 }

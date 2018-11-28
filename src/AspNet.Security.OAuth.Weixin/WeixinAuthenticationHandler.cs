@@ -6,13 +6,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -39,7 +42,9 @@ namespace AspNet.Security.OAuth.Weixin
             var address = QueryHelpers.AddQueryString(Options.UserInformationEndpoint, new Dictionary<string, string>
             {
                 ["access_token"] = tokens.AccessToken,
-                ["openid"] = tokens.Response.Value<string>("openid")
+                //["openid"] = tokens.Response.Value<string>("openid")
+                ["code"] = Request.Query["code"]
+
             });
 
             var response = await Backchannel.GetAsync(address);
@@ -79,10 +84,13 @@ namespace AspNet.Security.OAuth.Weixin
         {
             var address = QueryHelpers.AddQueryString(Options.TokenEndpoint, new Dictionary<string, string>()
             {
-                ["appid"] = Options.ClientId,
-                ["secret"] = Options.ClientSecret,
-                ["code"] = code,
-                ["grant_type"] = "authorization_code"
+                //["appid"] = Options.ClientId,
+                //["secret"] = Options.ClientSecret,
+                //["code"] = code,
+                //["grant_type"] = "authorization_code"
+                ["corpid"] = Options.ClientId,
+                ["corpsecret"] = Options.ClientSecret,
+
             });
 
             var response = await Backchannel.GetAsync(address);
@@ -113,14 +121,46 @@ namespace AspNet.Security.OAuth.Weixin
 
         protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)
         {
-            return QueryHelpers.AddQueryString(Options.AuthorizationEndpoint, new Dictionary<string, string>
+            var str = AddQueryString(Options.AuthorizationEndpoint, new Dictionary<string, string>
             {
                 ["appid"] = Options.ClientId,
-                ["scope"] = FormatScope(),
+                //["scope"] = FormatScope(),
+                ["scope"] = "snsapi_base",
                 ["response_type"] = "code",
                 ["redirect_uri"] = redirectUri,
                 ["state"] = Options.StateDataFormat.Protect(properties)
             });
+            return str + "#wechat_redirect";
+        }
+
+        private static string AddQueryString(string uri, IEnumerable<KeyValuePair<string, string>> queryString)
+        {
+            if (uri == null)
+                throw new ArgumentNullException(nameof(uri));
+            if (queryString == null)
+                throw new ArgumentNullException(nameof(queryString));
+            int num = uri.IndexOf('#');
+            string str1 = uri;
+            string str2 = "";
+            if (num != -1)
+            {
+                str2 = uri.Substring(num);
+                str1 = uri.Substring(0, num);
+            }
+            bool flag = str1.IndexOf('?') != -1;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(str1);
+            foreach (KeyValuePair<string, string> keyValuePair in queryString)
+            {
+                stringBuilder.Append(flag ? '&' : '?');
+                stringBuilder.Append(UrlEncoder.Default.Encode(keyValuePair.Key));
+                stringBuilder.Append('=');
+                stringBuilder.Append(UrlEncoder.Default.Encode(keyValuePair.Value));
+                flag = true;
+            }
+            stringBuilder.Append(str2);
+            //stringBuilder.Append("#wechat_redirect");//企业微信固定带上
+            return stringBuilder.ToString();
         }
 
         protected override string FormatScope() => string.Join(",", Options.Scope);

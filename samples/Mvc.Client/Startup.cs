@@ -42,7 +42,15 @@ namespace Mvc.Client
                 options.ClientId = "49e302895d8b09ea5656";
                 options.ClientSecret = "98f1bf028608901e9df91d64ee61536fe562064b";
                 options.Scope.Add("user:email");
+            })
+
+            .AddWeixin(options =>
+            {
+                options.ClientId = "wwbdf89a5953734930";
+                options.ClientSecret = "kpQjF_Z6jwrPeU7HGRGXHUIHAY7EeXYkE3fouzS7wZQ";
+                //options.Scope.Add("user:email");
             });
+
 
             services.AddMvc();
         }

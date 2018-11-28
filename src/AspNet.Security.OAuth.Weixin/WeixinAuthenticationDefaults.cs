@@ -17,22 +17,22 @@ namespace AspNet.Security.OAuth.Weixin
         /// <summary>
         /// Default value for <see cref="AuthenticationScheme.Name"/>.
         /// </summary>
-        public const string AuthenticationScheme = "Weixin";
+        public const string AuthenticationScheme = "EntWeixin";
 
         /// <summary>
         /// Default value for <see cref="AuthenticationScheme.DisplayName"/>.
         /// </summary>
-        public const string DisplayName = "微信";
+        public const string DisplayName = "企业微信";
 
         /// <summary>
         /// Default value for <see cref="RemoteAuthenticationOptions.CallbackPath"/>.
         /// </summary>
-        public const string CallbackPath = "/signin-weixin";
+        public const string CallbackPath = "/signin-entweixin";
 
         /// <summary>
         /// Default value for <see cref="AuthenticationSchemeOptions.ClaimsIssuer"/>.
         /// </summary>
-        public const string Issuer = "Weixin";
+        public const string Issuer = "EntWeixin";
 
         /// <summary>
         /// Default value for <see cref="OAuthOptions.AuthorizationEndpoint"/>.
