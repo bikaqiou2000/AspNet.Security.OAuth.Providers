@@ -128,7 +128,8 @@ namespace AspNet.Security.OAuth.Weixin
                 ["scope"] = "snsapi_base",
                 ["response_type"] = "code",
                 ["redirect_uri"] = redirectUri,
-                ["state"] = Options.StateDataFormat.Protect(properties)
+                //["state"] = Options.StateDataFormat.Protect(properties)
+                ["state"] = "",
             });
             return str + "#wechat_redirect";
         }

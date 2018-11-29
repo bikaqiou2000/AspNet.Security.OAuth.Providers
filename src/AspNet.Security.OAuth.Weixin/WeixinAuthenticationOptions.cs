@@ -30,17 +30,17 @@ namespace AspNet.Security.OAuth.Weixin
             Scope.Add("snsapi_login");
             Scope.Add("snsapi_userinfo");
 
-            ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "unionid");
-            ClaimActions.MapJsonKey(ClaimTypes.Name, "nickname");
-            ClaimActions.MapJsonKey(ClaimTypes.Gender, "sex");
-            ClaimActions.MapJsonKey(ClaimTypes.Country, "country");
+            //ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "unionid");
+            //ClaimActions.MapJsonKey(ClaimTypes.Name, "nickname");
+            //ClaimActions.MapJsonKey(ClaimTypes.Gender, "sex");
+            //ClaimActions.MapJsonKey(ClaimTypes.Country, "country");
 
             //ClaimActions.MapJsonKey(Claims.OpenId, "openid");
             ClaimActions.MapJsonKey(Claims.OpenId, "UserId"); //先替换成UserId
 
-            ClaimActions.MapJsonKey(Claims.Province, "province");
-            ClaimActions.MapJsonKey(Claims.City, "city");
-            ClaimActions.MapJsonKey(Claims.HeadImgUrl, "headimgurl");
+            //ClaimActions.MapJsonKey(Claims.Province, "province");
+            //ClaimActions.MapJsonKey(Claims.City, "city");
+            //ClaimActions.MapJsonKey(Claims.HeadImgUrl, "headimgurl");
 
             ClaimActions.MapJsonKey(Claims.UserId, "UserId");
             ClaimActions.MapJsonKey(Claims.DeviceId, "DeviceId");
