@@ -5,12 +5,24 @@
  */
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace MVCClient21.Controllers
 {
     public class HomeController : Controller
     {
+        private IConfiguration mConfig;
+        public HomeController(IConfiguration config)
+        {
+            mConfig = config;
+        }
+
         [HttpGet("~/")]
-        public ActionResult Index() => View();
+        public ActionResult Index()
+        {
+            ViewBag.Msg = mConfig.GetSection("MyConfiguration").GetValue<string>("Msg");
+
+            return View();
+        }
     }
 }
