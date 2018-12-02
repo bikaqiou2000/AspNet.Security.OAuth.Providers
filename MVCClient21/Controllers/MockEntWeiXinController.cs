@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace MVCClient21.Controllers
 {
@@ -52,12 +53,23 @@ namespace MVCClient21.Controllers
             {
                 errcode = 0,
                 errmsg = "ok",
-                UserId = "user1",
-                OpenId = "openid1",
-                DeviceId = "DEVICEID1"
+                UserId = "LiChao",
+                OpenId = "LiChao_openid1",
+                DeviceId = "869464030552267"
             });
+
+            /*
+            {
+                "UserId": "LiChao",
+                "DeviceId": "869464030552267",
+                "errcode": 0,
+                "errmsg": "ok"
+            }
+            */
+
             return res;
         }
+
 
     }
 }

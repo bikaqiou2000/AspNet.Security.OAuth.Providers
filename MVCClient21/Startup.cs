@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MVCClient21.Extensions;
 using MVCClient21.Models;
+using Newtonsoft.Json.Serialization;
 
 namespace MVCClient21
 {
@@ -76,7 +77,13 @@ namespace MVCClient21
             //})
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
 
             Logger.LogInformation("confingur service");
         }
@@ -110,12 +117,12 @@ namespace MVCClient21
             app.UseMvc();
 
             
-            app.Use(async (context, next) =>
-            {
-                // Do work that doesn't write to the Response.
-                await next.Invoke();
-                // Do logging or other work that doesn't write to the Response.
-            });
+            //app.Use(async (context, next) =>
+            //{
+            //    // Do work that doesn't write to the Response.
+            //    await next.Invoke();
+            //    // Do logging or other work that doesn't write to the Response.
+            //});
 
             //终结
             //app.Run(async (context ) =>
@@ -136,13 +143,13 @@ namespace MVCClient21
 
         }
 
-        private static void HandleBranch(IApplicationBuilder app)
-        {
-            app.Run(async context =>
-            {
-                var branchVer = context.Request.Query["branch"];
-                await context.Response.WriteAsync($"Branch used = {branchVer}");
-            });
-        }
+        //private static void HandleBranch(IApplicationBuilder app)
+        //{
+        //    app.Run(async context =>
+        //    {
+        //        var branchVer = context.Request.Query["branch"];
+        //        await context.Response.WriteAsync($"Branch used = {branchVer}");
+        //    });
+        //}
     }
 }

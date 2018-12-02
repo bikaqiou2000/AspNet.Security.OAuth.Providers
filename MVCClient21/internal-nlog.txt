@@ -126,3 +126,23 @@
 2018-12-02 22:03:28.8407 Info Found 45 configuration items
 2018-12-02 22:04:56.9227 Info Shutting down logging...
 2018-12-02 22:04:56.9479 Info Logger has been shut down.
+2018-12-02 22:24:19.9968 Info Message Template Auto Format enabled
+2018-12-02 22:24:20.0078 Info Loading assembly: NLog.Web.AspNetCore
+2018-12-02 22:24:20.1146 Info Adding target File Target[allfile]
+2018-12-02 22:24:20.1146 Info Adding target File Target[ownFile-web]
+2018-12-02 22:24:20.1338 Info Configured from an XML element in D:\Users\YAP\Desktop\AspNet.Security.OAuth.Providers-dev\MVCClient21\bin\Debug\netcoreapp2.1\nlog.config...
+2018-12-02 22:24:20.1573 Info Found 45 configuration items
+2018-12-02 22:25:00.1927 Info Shutting down logging...
+2018-12-02 22:25:00.2322 Info Logger has been shut down.
+2018-12-02 22:25:35.6728 Info Message Template Auto Format enabled
+2018-12-02 22:25:35.6815 Info Loading assembly: NLog.Web.AspNetCore
+2018-12-02 22:25:35.7812 Info Adding target File Target[allfile]
+2018-12-02 22:25:35.7905 Info Adding target File Target[ownFile-web]
+2018-12-02 22:25:35.7905 Info Configured from an XML element in D:\Users\YAP\Desktop\AspNet.Security.OAuth.Providers-dev\MVCClient21\bin\Debug\netcoreapp2.1\nlog.config...
+2018-12-02 22:25:35.8175 Info Found 45 configuration items
+2018-12-02 22:40:02.1178 Info Message Template Auto Format enabled
+2018-12-02 22:40:02.1295 Info Loading assembly: NLog.Web.AspNetCore
+2018-12-02 22:40:02.2371 Info Adding target File Target[allfile]
+2018-12-02 22:40:02.2461 Info Adding target File Target[ownFile-web]
+2018-12-02 22:40:02.2566 Info Configured from an XML element in D:\Users\YAP\Desktop\AspNet.Security.OAuth.Providers-dev\MVCClient21\bin\Debug\netcoreapp2.1\nlog.config...
+2018-12-02 22:40:02.2783 Info Found 45 configuration items
