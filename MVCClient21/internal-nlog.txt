@@ -1,0 +1,14 @@
+2018-12-02 15:15:19.7757 Info Message Template Auto Format enabled
+2018-12-02 15:15:19.7883 Info Loading assembly: NLog.Web.AspNetCore
+2018-12-02 15:15:19.9161 Info Adding target File Target[allfile]
+2018-12-02 15:15:19.9280 Info Adding target File Target[ownFile-web]
+2018-12-02 15:15:19.9432 Info Configured from an XML element in D:\Users\YAP\Desktop\AspNet.Security.OAuth.Providers-dev\MVCClient21\bin\Debug\netcoreapp2.1\nlog.config...
+2018-12-02 15:15:19.9712 Info Found 45 configuration items
+2018-12-02 15:18:25.2390 Info Message Template Auto Format enabled
+2018-12-02 15:18:25.2390 Info Loading assembly: NLog.Web.AspNetCore
+2018-12-02 15:18:25.3685 Info Adding target File Target[allfile]
+2018-12-02 15:18:25.3685 Info Adding target File Target[ownFile-web]
+2018-12-02 15:18:25.3922 Info Configured from an XML element in D:\Users\YAP\Desktop\AspNet.Security.OAuth.Providers-dev\MVCClient21\bin\Debug\netcoreapp2.1\nlog.config...
+2018-12-02 15:18:25.4186 Info Found 45 configuration items
+2018-12-02 15:20:29.6097 Info Shutting down logging...
+2018-12-02 15:20:29.6477 Info Logger has been shut down.

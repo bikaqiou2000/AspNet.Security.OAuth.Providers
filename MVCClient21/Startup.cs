@@ -11,15 +11,21 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using MVCClient21.Extensions;
 using MVCClient21.Models;
 
 namespace MVCClient21
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+
+        private readonly ILogger _logger;
+
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+            _logger = logger;
         }
 
         public IConfiguration Configuration { get; }
@@ -57,6 +63,8 @@ namespace MVCClient21
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            _logger.LogInformation("confingur service");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,10 +77,10 @@ namespace MVCClient21
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
+                //app.UseHsts(); //如果代理服务器启用hsts则不需要
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection(); //如果代理服务器启用https则不需要
             app.UseStaticFiles();
 
             app.UseCookiePolicy();
@@ -85,6 +93,41 @@ namespace MVCClient21
             app.UseAuthentication();
 
             app.UseMvc();
+
+            
+            app.Use(async (context, next) =>
+            {
+                // Do work that doesn't write to the Response.
+                await next.Invoke();
+                // Do logging or other work that doesn't write to the Response.
+            });
+
+            //终结
+            //app.Run(async (context ) =>
+            //{
+            //    Console.WriteLine("hello in pipeline !"); 
+            //});
+
+
+            //app.Map("/map1", (appbuild) =>
+            //{
+            //    appbuild.Run( async (ctx) => await ctx.Response.WriteAsync("ddd"));
+            //});
+
+            app.MapWhen(context => context.Request.Query.ContainsKey("branch"),
+                HandleBranch);
+
+            app.UseRequestCulture();
+
+        }
+
+        private static void HandleBranch(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                var branchVer = context.Request.Query["branch"];
+                await context.Response.WriteAsync($"Branch used = {branchVer}");
+            });
         }
     }
 }

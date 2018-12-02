@@ -1,5 +1,4 @@
 {
-
-  "server.urls": "http://localhost:60000;https://localhost:60001"
-
+  //"server.urls": "http://localhost:5000;https://localhost:5001"
+  "server.urls": "http://localhost:5000"
 }
