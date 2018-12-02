@@ -40,13 +40,15 @@ namespace AspNet.Security.OAuth.Weixin
         //public const string AuthorizationEndpoint = "https://open.weixin.qq.com/connect/qrconnect";
         //企业微信的oauth登录
         public const string AuthorizationEndpoint = "https://open.weixin.qq.com/connect/oauth2/authorize";
-        
+        //public const string AuthorizationEndpoint = "http://localhost:5000/connect/oauth2/authorize";  //mock
+
         /// <summary>
         /// Default value for <see cref="OAuthOptions.TokenEndpoint"/>.
         /// </summary>
         //public const string TokenEndpoint = "https://api.weixin.qq.com/sns/oauth2/access_token";
-        //企业微信获取API调用令牌
+        //企业微信获取API调用 token 令牌
         public const string TokenEndpoint = "https://qyapi.weixin.qq.com/cgi-bin/gettoken";
+        //public const string TokenEndpoint = "http://localhost:5000/cgi-bin/gettoken"; //mock
 
         /// <summary>
         /// Default value for <see cref="OAuthOptions.UserInformationEndpoint"/>.
@@ -54,6 +56,7 @@ namespace AspNet.Security.OAuth.Weixin
         //public const string UserInformationEndpoint = "https://api.weixin.qq.com/sns/userinfo";
         //企业微信获用户信息
         public const string UserInformationEndpoint = "https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo";
-        
+        //public const string UserInformationEndpoint = "http://localhost:5000/cgi-bin/user/getuserinfo"; //mock
+
     }
 }

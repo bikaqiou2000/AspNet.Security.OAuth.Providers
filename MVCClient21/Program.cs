@@ -69,6 +69,7 @@ namespace MVCClient21
                {
                    logging.ClearProviders();
                    logging.SetMinimumLevel(LogLevel.Trace);
+                   logging.AddConsole();
                })
                .UseNLog() 
                .UseStartup<Startup>();

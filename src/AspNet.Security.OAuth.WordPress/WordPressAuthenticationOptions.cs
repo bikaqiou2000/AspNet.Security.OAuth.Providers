@@ -37,6 +37,7 @@ namespace AspNet.Security.OAuth.WordPress
             ClaimActions.MapJsonKey(Claims.ProfileUrl, "profile_URL");
             ClaimActions.MapJsonKey(Claims.AvatarUrl, "avatar_URL");
             ClaimActions.MapJsonKey(Claims.PrimaryBlog, "primary_blog");
+
         }
     }
 }

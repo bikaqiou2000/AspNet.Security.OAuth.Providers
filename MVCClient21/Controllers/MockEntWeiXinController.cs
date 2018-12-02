@@ -17,9 +17,14 @@ namespace MVCClient21.Controllers
             ,[FromQuery] string redirect_uri
             ,[FromQuery] string response_type 
             ,[FromQuery] string scope
-            ,[FromQuery] string state)
+            ,[FromQuery] string state = "")
         {
-            string nextUrl =$"{redirect_uri}?action=get&code=eh3CZBgG333qs9EdaPbCAP1VaOrjuNkiAZHTWgaWsZQ&state={state}";
+            string nextUrl =$"{redirect_uri}?action=get&code=eh3CZBgG333qs9EdaPbCAP1VaOrjuNkiAZHTWgaWsZQ";
+            if (!string.IsNullOrEmpty(state))
+            {
+                nextUrl += $"&state={state}";
+            }
+           
             return Redirect(nextUrl);
         }
 
@@ -38,7 +43,7 @@ namespace MVCClient21.Controllers
             return res;
         }
 
-        [HttpGet("~/cgi-bin/getuserinfo")]
+        [HttpGet("~/cgi-bin/user/getuserinfo")]
         public IActionResult getuserinfo(
             [FromQuery] string access_token
             , [FromQuery] string code)
@@ -48,6 +53,7 @@ namespace MVCClient21.Controllers
                 errcode = 0,
                 errmsg = "ok",
                 UserId = "user1",
+                OpenId = "openid1",
                 DeviceId = "DEVICEID1"
             });
             return res;

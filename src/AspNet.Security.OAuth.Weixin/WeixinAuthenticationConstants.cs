@@ -13,10 +13,10 @@ namespace AspNet.Security.OAuth.Weixin
     {
         public static class Claims
         {
-            public const string City = "urn:weixin:city";
-            public const string HeadImgUrl = "urn:weixin:headimgurl";
+            //public const string City = "urn:weixin:city";
+            //public const string HeadImgUrl = "urn:weixin:headimgurl";
             public const string OpenId = "urn:weixin:openid";
-            public const string Privilege = "urn:weixin:privilege";
+            //public const string Privilege = "urn:weixin:privilege";
             public const string Province = "urn:weixin:province";
 
             //企业微信登录后获取用户信息

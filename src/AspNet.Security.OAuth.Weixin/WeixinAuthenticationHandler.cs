@@ -60,7 +60,7 @@ namespace AspNet.Security.OAuth.Weixin
             }
 
             var payload = JObject.Parse(await response.Content.ReadAsStringAsync());
-            if (!string.IsNullOrEmpty(payload.Value<string>("errcode")))
+            if (string.IsNullOrEmpty(payload.Value<string>("errcode")) || payload.Value<string>("errcode") != "0")
             {
                 Logger.LogError("An error occurred while retrieving the user profile: the remote server " +
                                 "returned a {Status} response with the following payload: {Headers} {Body}.",
@@ -70,6 +70,8 @@ namespace AspNet.Security.OAuth.Weixin
 
                 throw new HttpRequestException("An error occurred while retrieving user information.");
             }
+
+            Logger.LogInformation(payload.ToString());
 
             var principal = new ClaimsPrincipal(identity);
             var context = new OAuthCreatingTicketContext(principal, properties, Context, Scheme, Options, Backchannel, tokens, payload);
@@ -106,7 +108,7 @@ namespace AspNet.Security.OAuth.Weixin
             }
 
             var payload = JObject.Parse(await response.Content.ReadAsStringAsync());
-            if (!string.IsNullOrEmpty(payload.Value<string>("errcode")))
+            if (string.IsNullOrEmpty(payload.Value<string>("errcode")) || payload.Value<string>("errcode") != "0")
             {
                 Logger.LogError("An error occurred while retrieving an access token: the remote server " +
                                 "returned a {Status} response with the following payload: {Headers} {Body}.",
@@ -121,6 +123,7 @@ namespace AspNet.Security.OAuth.Weixin
 
         protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)
         {
+            
             var str = AddQueryString(Options.AuthorizationEndpoint, new Dictionary<string, string>
             {
                 ["appid"] = Options.ClientId,
@@ -128,8 +131,8 @@ namespace AspNet.Security.OAuth.Weixin
                 ["scope"] = "snsapi_base",
                 ["response_type"] = "code",
                 ["redirect_uri"] = redirectUri,
-                //["state"] = Options.StateDataFormat.Protect(properties)
-                ["state"] = "",
+                ["state"] = Options.StateDataFormat.Protect(properties) //微信文档不靠谱，长点没关系
+                //["state"] = Options.StateDataFormat.Protect("WX"),
             });
             return str + "#wechat_redirect";
         }

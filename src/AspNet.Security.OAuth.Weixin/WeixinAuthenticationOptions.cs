@@ -27,8 +27,8 @@ namespace AspNet.Security.OAuth.Weixin
             TokenEndpoint = WeixinAuthenticationDefaults.TokenEndpoint;
             UserInformationEndpoint = WeixinAuthenticationDefaults.UserInformationEndpoint;
 
-            Scope.Add("snsapi_login");
-            Scope.Add("snsapi_userinfo");
+            //Scope.Add("snsapi_login");
+            //Scope.Add("snsapi_userinfo");
 
             //ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "unionid");
             //ClaimActions.MapJsonKey(ClaimTypes.Name, "nickname");
@@ -36,7 +36,7 @@ namespace AspNet.Security.OAuth.Weixin
             //ClaimActions.MapJsonKey(ClaimTypes.Country, "country");
 
             //ClaimActions.MapJsonKey(Claims.OpenId, "openid");
-            ClaimActions.MapJsonKey(Claims.OpenId, "UserId"); //先替换成UserId
+            ClaimActions.MapJsonKey(Claims.OpenId, "OpenId"); 
 
             //ClaimActions.MapJsonKey(Claims.Province, "province");
             //ClaimActions.MapJsonKey(Claims.City, "city");
@@ -45,15 +45,15 @@ namespace AspNet.Security.OAuth.Weixin
             ClaimActions.MapJsonKey(Claims.UserId, "UserId");
             ClaimActions.MapJsonKey(Claims.DeviceId, "DeviceId");
 
-            ClaimActions.MapCustomJson(Claims.Privilege, user =>
-            {
-                var value = user.Value<JArray>("privilege");
-                if (value == null)
-                {
-                    return null;
-                }
-                return string.Join(",", value.ToObject<string[]>());
-            });
+            //ClaimActions.MapCustomJson(Claims.Privilege, user =>
+            //{
+            //    var value = user.Value<JArray>("privilege");
+            //    if (value == null)
+            //    {
+            //        return null;
+            //    }
+            //    return string.Join(",", value.ToObject<string[]>());
+            //});
 
 
         }
